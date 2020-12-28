@@ -1,0 +1,10 @@
+EXPRESSION 	::=		TERM ((PLUS | MINUS) TERM)+;
+TERM 				::=		FACTOR ((MULTIPLY | DIVIDE) FACTOR)*;
+FACTOR 			::=		INT | FLOAT;
+INT 				::=		DIGIT+;
+FLOAT 			::=		DIGIT+ , '.' , DIGIT+;
+PLUS				::=		'+';
+MINUS				::=		'-';
+MULTIPLY		::=		'*';
+DIVIDE			::=		'/';
+DIGIT				::=		"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
