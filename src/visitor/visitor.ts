@@ -8,10 +8,12 @@ export class Visitor {
     '/': (a: number, b: number) => a / b,
   };
 
-  walk(node: BinOpNode): number {
+  walk(node: Node): number {
+    const isNumber = !Number.isNaN(Number(node.value));
+    if (isNumber) return Number(node.value);
     let operation = this.#operations[node.value];
-    let right = this.getNumber(node.right);
-    let left = this.getNumber(node.left);
+    let right = this.getNumber((node as BinOpNode).right);
+    let left = this.getNumber((node as BinOpNode).left);
     return operation(left, right);
   }
 

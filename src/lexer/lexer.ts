@@ -1,9 +1,9 @@
 import { Token, TokenType } from '../types';
 
 export class Lexer {
-  #cursor: number = 0;
+  #cursor: number = -1;
   #currentChar: string = '';
-  #query: string;
+  #expression: string;
   #validChars: { [key: string]: TokenType } = {
     '+': TokenType.PLUS,
     '-': TokenType.MINUS,
@@ -23,8 +23,8 @@ export class Lexer {
     '9': TokenType.DIGIT,
   };
 
-  constructor(query: string) {
-    this.#query = query;
+  constructor(expression: string) {
+    this.#expression = expression.trim();
     this.advance();
   }
 
@@ -42,19 +42,17 @@ export class Lexer {
       const token = this.createToken(type, this.#currentChar);
       this.advance();
       return token;
-    } else if (this.#cursor === this.#query.length) {
+    } else if (this.#cursor === this.#expression.length) {
       return this.createToken(TokenType.EOF, this.#currentChar);
     } else {
-      console.log(this.#currentChar);
-
       throw new SyntaxError(`Unexpected token ${this.#currentChar}`);
     }
   }
 
   private advance(): void {
-    if (this.#cursor < this.#query.length) {
-      this.#currentChar = this.#query[this.#cursor];
+    if (this.#cursor < this.#expression.length) {
       this.#cursor++;
+      this.#currentChar = this.#expression[this.#cursor];
     }
   }
 
@@ -74,7 +72,9 @@ export class Lexer {
       this.#currentChar === '.'
     ) {
       if (radixPoints > 1) {
-        throw new SyntaxError(`Floats can only contain a single radix`);
+        throw new SyntaxError(
+          `Floating point numbers can only contain a single radix point`
+        );
       }
       if (this.#currentChar === '.') {
         radixPoints++;
@@ -84,6 +84,7 @@ export class Lexer {
       }
       this.advance();
     }
+
     return radixPoints === 1
       ? this.createToken(TokenType.FLOAT, digits)
       : this.createToken(TokenType.INT, digits);

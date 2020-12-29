@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ast1, ast2, ast3, ast4, ast5, ast6 } from '../../data/asts';
+import { ast1, ast2, ast3, ast4, ast5, ast6, ast7 } from '../../data/asts';
 import { Visitor } from './visitor';
 
 describe('class Visitor', () => {
@@ -31,5 +31,15 @@ describe('class Visitor', () => {
   it('should evaluate 10 / 2 * 3 as 15', () => {
     const visitor = new Visitor();
     expect(visitor.walk(ast6)).to.equal(15);
+  });
+
+  it('should evaluate 1 as 1', () => {
+    const visitor = new Visitor();
+    expect(visitor.walk({ value: '1' })).to.equal(1);
+  });
+
+  it('should evaluate 4 - 1 as 3', () => {
+    const visitor = new Visitor();
+    expect(visitor.walk(ast7)).to.equal(3);
   });
 });

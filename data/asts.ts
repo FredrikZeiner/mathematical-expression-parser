@@ -83,3 +83,13 @@ export const ast6 = {
     value: '3',
   },
 };
+
+export const ast7 = {
+  value: '-',
+  left: {
+    value: '4',
+  },
+  right: {
+    value: '1',
+  },
+};
