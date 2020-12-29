@@ -35,4 +35,10 @@ describe('Lexer', () => {
     const lexer = new Lexer('12.22 + 2');
     expect(lexer.next()).to.deep.equal({ type: 'FLOAT', value: '12.22' });
   });
+  it('should be able to tokenize expression without whitespace', () => {
+    const lexer = new Lexer('2+2');
+    lexer.next();
+    lexer.next();
+    expect(lexer.next()).to.deep.equal({ type: 'INT', value: '2' });
+  });
 });

@@ -37,21 +37,22 @@ export class Lexer {
 
     if (type === TokenType.DIGIT) {
       const token = this.assembleDigits();
-      this.advance();
       return token;
     } else if (type) {
       const token = this.createToken(type, this.#currentChar);
       this.advance();
       return token;
-    } else if (this.#cursor > this.#query.length) {
+    } else if (this.#cursor === this.#query.length) {
       return this.createToken(TokenType.EOF, this.#currentChar);
     } else {
+      console.log(this.#currentChar);
+
       throw new SyntaxError(`Unexpected token ${this.#currentChar}`);
     }
   }
 
   private advance(): void {
-    if (this.#cursor <= this.#query.length) {
+    if (this.#cursor < this.#query.length) {
       this.#currentChar = this.#query[this.#cursor];
       this.#cursor++;
     }

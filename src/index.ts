@@ -3,7 +3,7 @@ import { Parser } from './parser/parser';
 import { BinOpNode } from './types';
 import { Visitor } from './visitor/visitor';
 
-console.info('Write expression, click "enter" to evaluate');
+console.info('Write expression, hit "enter" to evaluate');
 
 process.stdin.on('data', (data) => {
   const parser = new Parser(new Lexer(data.toString()));
