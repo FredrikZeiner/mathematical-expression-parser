@@ -18,7 +18,11 @@ export class Parser {
   private factor(): BaseNode {
     const { value, type } = this.#currentToken;
     if (!this.isFactor(type))
-      throw new SyntaxError(`Unexpected token ${this.#currentToken.value}`);
+      throw new SyntaxError(
+        `Unexpected token "${this.#currentToken.value}" at index ${
+          this.#currentToken.index
+        }.`
+      );
     this.advance();
     return { value };
   }

@@ -28,4 +28,5 @@ export enum TokenType {
 export interface Token {
   type: TokenType;
   value: string;
+  index: number;
 }

@@ -45,7 +45,9 @@ export class Lexer {
     } else if (this.#cursor === this.#expression.length) {
       return this.createToken(TokenType.EOF, this.#currentChar);
     } else {
-      throw new SyntaxError(`Unexpected token ${this.#currentChar}`);
+      throw new SyntaxError(
+        `Unexpected token "${this.#currentChar}" at index ${this.#cursor}.`
+      );
     }
   }
 
@@ -60,6 +62,7 @@ export class Lexer {
     return {
       type,
       value,
+      index: this.#cursor,
     };
   }
 
