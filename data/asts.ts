@@ -65,10 +65,10 @@ export const ast4 = {
 export const ast5 = {
   value: '/',
   right: {
-    value: '10',
+    value: '2',
   },
   left: {
-    value: '2',
+    value: '10',
   },
 };
 
@@ -76,8 +76,8 @@ export const ast6 = {
   value: '*',
   left: {
     value: '/',
-    left: { value: '2' },
-    right: { value: '10' },
+    left: { value: '10' },
+    right: { value: '2' },
   },
   right: {
     value: '3',

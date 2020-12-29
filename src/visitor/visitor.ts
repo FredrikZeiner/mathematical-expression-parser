@@ -12,7 +12,7 @@ export class Visitor {
     let operation = this.#operations[node.value];
     let right = this.getNumber(node.right);
     let left = this.getNumber(node.left);
-    return operation(right, left);
+    return operation(left, right);
   }
 
   getNumber(node: Node): number {
