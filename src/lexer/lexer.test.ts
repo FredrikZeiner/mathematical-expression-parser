@@ -8,18 +8,21 @@ describe('class Lexer', () => {
     lexer.next(); // +
     expect(lexer.next()).to.deep.equal({ type: 'INT', value: '2', index: 5 });
   });
+
   it('should throw error when encountering unexpected token', () => {
     const lexer = new Lexer('1 + $ + 3');
     lexer.next(); // 1
     lexer.next(); // +
     expect(lexer.next.bind(lexer)).to.throw();
   });
+
   it('should skip arbitrary amount of whitespace', () => {
     const lexer = new Lexer('1 +     2 + 3');
     lexer.next(); // 1
     lexer.next(); // +
     expect(lexer.next()).to.deep.equal({ type: 'INT', value: '2', index: 9 });
   });
+
   it('should return EOF token when encountering end-of-file', () => {
     const lexer = new Lexer('1 + 2');
     lexer.next(); // 1
@@ -31,6 +34,7 @@ describe('class Lexer', () => {
       index: 5,
     });
   });
+
   it('should be able to assemble digits into an INT', () => {
     const lexer = new Lexer('1222 + 2');
     expect(lexer.next()).to.deep.equal({
@@ -39,6 +43,7 @@ describe('class Lexer', () => {
       index: 4,
     });
   });
+
   it('should be able to tokenize a FLOAT', () => {
     const lexer = new Lexer('12.22 + 2');
     expect(lexer.next()).to.deep.equal({
@@ -47,6 +52,7 @@ describe('class Lexer', () => {
       index: 5,
     });
   });
+
   it('should be able to tokenize expression without whitespace', () => {
     const lexer = new Lexer('2+2');
     lexer.next();
