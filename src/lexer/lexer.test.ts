@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Lexer } from './lexer';
 
-describe('Lexer', () => {
+describe('class Lexer', () => {
   it('should return expected token', () => {
     const lexer = new Lexer('1 + 2 + 3');
     lexer.next(); // 1

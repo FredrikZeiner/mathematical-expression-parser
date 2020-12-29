@@ -1,6 +1,6 @@
 import { BinOpNode, Node, Operation } from '../types';
 
-export class Visitor {
+export class Interpreter {
   #operations: { [key: string]: Operation } = {
     '+': (a: number, b: number) => a + b,
     '-': (a: number, b: number) => a - b,
