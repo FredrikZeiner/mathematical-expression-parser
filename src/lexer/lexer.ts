@@ -46,7 +46,7 @@ export class Lexer {
       return this.createToken(TokenType.EOF, this.#currentChar);
     } else {
       throw new SyntaxError(
-        `Unexpected token "${this.#currentChar}" at index ${this.#cursor}.`
+        `Illegal character "${this.#currentChar}" at index ${this.#cursor}.`
       );
     }
   }
